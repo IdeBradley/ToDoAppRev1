@@ -1,0 +1,65 @@
+﻿@model ToDoAppRev1.Models.TaskList
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TaskList</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TaskListName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaskListName)
+        </dd>
+
+    </dl>
+    <table class="table">
+        <tr>
+            <th>
+                Task Name
+            </th>
+            <th>
+                Start Date
+            </th>
+            <th>
+                End Date
+            </th>
+            <th>
+                Completed
+            </th>
+        </tr>
+
+        @foreach (var item in Model.Tasks)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaskName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Completed)
+                </td>
+                <td>
+                    @Html.ActionLink( "Edit", "Edit", "Tasks", new { id = item.TaskID }, null) |
+                    @Html.ActionLink("Details","Details", "Tasks", new {id = item.TaskID }, null) |
+                    @Html.ActionLink("Delete", "Delete", "Tasks", new { id = item.TaskID }, null)  
+                </td>
+            </tr>
+        }
+    </table>
+
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
